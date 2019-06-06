@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<img src="trash.png" class="trash" style="height: 50px; position: absolute; margin-left: 1400px;">
+	<div class="font-weight-bold cost_text  bg-primary py-1 px-1 rounded" style="position: absolute; margin-left: 1400px; margin-top: 30px;">0</div>
+	<button class="btn_trash_clean btn-success" style="position: absolute; margin-left: 1400px; margin-top: 70px;">Очистить</button>
+	<div class="list" style="position: absolute; margin-left: 1400px; margin-top: 105px;"></div>
+	<div class="container">
+		<input type="" class="search">
+		<button class="btn btn-success">Поиск </button>
+		<div class="row"></div>
+	</div>
+<script>
+	let row = document.querySelector(".row");
+	let search = document.querySelector(".search");
+	let btn = document.querySelector(".btn");
+	let summ=0;
+	let cost_text= document.querySelector(".cost_text");
+	let trash_clean= document.querySelector(".btn_trash_clean");
+	let list_div= document.querySelector(".list");
+
+	let array =[
+		{
+			name:"куртка",
+			price:10000,
+			url:"kurtka.jpg",
+			brand:"h&m",
+			size:"M",
+			gender:"female"
+		},
+		
+		{
+			name:"джинсы",
+			price:8000,
+			url:"5.jpg",
+			brand:"levis",
+			size:"L",
+			gender:"male"
+		},
+		{
+			name:"джинсы",
+			price:2500,
+			url:"jeanse1.jpg",
+			brand:"zara",
+			size:"M",
+			gender:"female"
+
+		},
+		{
+			name:"джинсы",
+			price:3500,
+			url:"jeanse2.jpg",
+			brand:"zara",
+			size:"L",
+			gender:"female"
+
+		},
+		{
+			name:"футболка",
+			price:1200,
+			url:"tshirt2.jpg",
+			brand:"asics",
+			size:"L",
+			gender:"male"
+
+		},
+		{
+			name:"футболка",
+			price:900,
+			url:"tshirt.jpg",
+			brand:"h&m",
+			size:"XS",
+			gender:"female"
+
+		},
+		{
+			name:"куртка",
+			price:15000,
+			url:"20.jpg",
+			brand:"the north face",
+			size:"L",
+			gender:"male"
+
+		},
+		{
+			name:"шапка",
+			price:900,
+			url:"9.jpg",
+			brand:"nike",
+			size:"nosize",
+			gender:"male"
+		},
+		{
+			name:"носки",
+			price:500,
+			url:"socks.jpg",
+			brand:"bonprix",
+			size:"nosize",
+			gender:"male"
+
+		},
+
+	];
+for(let i = 0; i<9; i = i + 1)
+{
+			let newDiv = document.createElement("div");
+			row.appendChild(newDiv);
+			newDiv.classList.add("col-3");
+			let newImg = document.createElement("img");
+			newImg.src = array[i].url;
+			newImg.style.height ="200px";
+			newDiv.appendChild(newImg);
+
+			let newName = document.createElement("p");
+			newDiv.appendChild(newName);
+			newName.innerHTML ="Название: "+array[i].name;
+
+			let cost = document.createElement("p");
+			newDiv.appendChild(cost);
+			cost.innerHTML ="Цена: "+array[i].price;
+
+			let brand = document.createElement("p");
+			newDiv.appendChild(brand);
+			brand.innerHTML ="Бренд: "+array[i].brand;
+
+			let newSize = document.createElement("p");
+			newDiv.appendChild(newSize);
+			newSize.innerHTML ="Размер: "+array[i].size;
+
+			let newGender = document.createElement("p");
+			newDiv.appendChild(newGender);
+			newGender.innerHTML ="Пол: "+array[i].gender;
+
+			newDiv.onclick = function(){
+				summ=summ+array[i].price;
+				cost_text.innerHTML = summ;
+
+				let newListName = document.createElement("p");
+				list_div.appendChild(newListName);
+				newListName.innerHTML =array[i].name+"("+array[i].brand+")";
+			}
+}
+let pocaz= document.querySelectorAll(".col-3");
+btn.onclick = function(){
+	row.innerHTML = "";
+	for(let i = 0; i<9; i = i + 1)
+		if(search.value==array[i].name||search.value==array[i].price||search.value==array[i].brand||search.value==array[i].size||search.value==array[i].gender){	
+			{
+				let newDiv = document.createElement("div");
+				row.appendChild(newDiv);
+				newDiv.classList.add("col-3");
+				let newImg = document.createElement("img");
+				newImg.src = array[i].url;
+				newImg.style.height ="200px";
+				newDiv.appendChild(newImg);
+
+				let newName = document.createElement("p");
+				newDiv.appendChild(newName);
+				newName.innerHTML ="Название: "+array[i].name;
+
+				let cost = document.createElement("p");
+				newDiv.appendChild(cost);
+				cost.innerHTML ="Цена: "+array[i].price;
+
+				let brand = document.createElement("p");
+				newDiv.appendChild(brand);
+				brand.innerHTML ="Бренд: "+array[i].brand;
+
+				let newSize = document.createElement("p");
+				newDiv.appendChild(newSize);
+				newSize.innerHTML ="Размер: "+array[i].size;
+
+				let newGender = document.createElement("p");
+				newDiv.appendChild(newGender);
+				newGender.innerHTML ="Пол: "+array[i].gender;
+
+				newDiv.onclick = function(){
+				summ=summ+array[i].price;
+				cost_text.innerHTML = summ;
+
+				
+				let newListName = document.createElement("p");
+				list_div.appendChild(newListName);
+				newListName.innerHTML =array[i].name+"("+array[i].brand+")";
+				}
+			}
+		}
+}
+trash_clean.onclick = function(){
+	summ=0;
+	cost_text.innerHTML = summ;
+	list_div.innerHTML = "";
+}
+
+</script>
+</body>
+</html>
